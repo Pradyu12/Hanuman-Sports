@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Hanuman Sports</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff6b00;
+            --secondary: #333;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --white: #ffffff;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header Styles (same as main page) */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .contact-info a {
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .main-header {
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .header-icons a {
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .header-icons a span {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1rem;
+            background-color: var(--white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Cart Section */
+        .section {
+            padding: 2rem 1rem;
+        }
+
+        .section-title {
+            margin-bottom: 2rem;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .cart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .cart-items {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cart-table th {
+            text-align: left;
+            padding: 0.8rem 0;
+            border-bottom: 2px solid var(--light);
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        .cart-table td {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--light);
+            vertical-align: middle;
+        }
+
+        .cart-product {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cart-product-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .cart-product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-product-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-product-category {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .cart-product-remove {
+            color: var(--gray);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .cart-product-remove:hover {
+            color: var(--primary);
+        }
+
+        .cart-quantity {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-quantity button {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid var(--light);
+            background-color: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .cart-quantity button:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .cart-quantity input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid var(--light);
+            padding: 0.3rem;
+            border-radius: 5px;
+        }
+
+        .cart-price {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .cart-subtotal {
+            font-weight: 600;
+        }
+
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--light);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #e05d00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Cart Summary */
+        .cart-summary {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            align-self: flex-start;
+            position: sticky;
+            top: 120px;
+        }
+
+        .cart-summary h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .summary-row.total {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--light);
+        }
+
+        .summary-row.total .amount {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .coupon-form {
+            margin-top: 1.5rem;
+        }
+
+        .coupon-form input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--light);
+            border-radius: 5px;
+            margin-bottom: 0.8rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        /* Footer (same as main page) */
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 4rem 1rem 2rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-col p {
+            margin-bottom: 1rem;
+            color: #adb5bd;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-contact-info {
+            list-style: none;
+        }
+
+        .footer-contact-info li {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.8rem;
+            color: #adb5bd;
+        }
+
+        .footer-contact-info i {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .empty-cart i {
+            font-size: 5rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .empty-cart h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .empty-cart p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-summary {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-container {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+
+            .header-icons {
+                margin-top: 1rem;
+            }
+
+            .cart-product {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cart-table th {
+                display: none;
+            }
+
+            .cart-table td {
+                display: block;
+                padding: 0.5rem 0;
+                border-bottom: none;
+            }
+
+            .cart-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                display: inline-block;
+                width: 100px;
+                color: var(--gray);
+            }
+
+            .cart-table tr {
+                display: block;
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid var(--light);
+            }
+
+            .cart-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="contact-info">
+                <a href="tel:+919876543210"><i class="fas fa-phone"></i> +91 9538452672</a>
+                <a href="mailto:info@hanumansports.com"><i class="fas fa-envelope"></i> info@hanumansports.com</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+        <div class="main-header">
+            <div class="header-container">
+                <div class="logo">
+                    <div class="logo-text">
+                        <h1>Hanuman Sports</h1>
+                        <p>Mysore's Premier Sports Destination</p>
+                    </div>
+                </div>
+
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#products">Products</a></li>
+                        <li><a href="index.html#categories">Categories</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="add_cart.html"><i class="fas fa-shopping-cart"></i><span>3</span></a>
+                </div>
+
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="index.html">Home</a> / Shopping Cart
+        </div>
+    </div>
+
+    <!-- Cart Section -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Shopping Cart</h2>
+        </div>
+        
+        <div class="cart-container">
+            <div class="cart-items">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Product">
+                                <div class="cart-product">
+                                    <div class="cart-product-img">
+                                        <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Running Shoes">
+                                    </div>
+                                    <div>
+                                        <div class="cart-product-title">Premium Running Shoes</div>
+                                        <div class="cart-product-category">Footwear</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Price" class="cart-price">₹2,499</td>
+                            <td data-label="Quantity">
+                                <div class="cart-quantity">
+                                    <button class="decrease">-</button>
+                                    <input type="number" value="1" min="1">
+                                    <button class="increase">+</button>
+                                </div>
+                            </td>
+                            <td data-label="Subtotal" class="cart-subtotal">₹2,499</td>
+                            <td><span class="cart-product-remove"><i class="fas fa-times"></i></span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Product">
+                                <div class="cart-product">
+                                    <div class="cart-product-img">
+                                        <img src="https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Cricket Bat">
+                                    </div>
+                                    <div>
+                                        <div class="cart-product-title">Professional Cricket Bat</div>
+                                        <div class="cart-product-category">Cricket</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Price" class="cart-price">₹3,999</td>
+                            <td data-label="Quantity">
+                                <div class="cart-quantity">
+                                    <button class="decrease">-</button>
+                                    <input type="number" value="1" min="1">
+                                    <button class="increase">+</button>
+                                </div>
+                            </td>
+                            <td data-label="Subtotal" class="cart-subtotal">₹3,999</td>
+                            <td><span class="cart-product-remove"><i class="fas fa-times"></i></span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Product">
+                                <div class="cart-product">
+                                    <div class="cart-product-img">
+                                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Yoga Mat">
+                                    </div>
+                                    <div>
+                                        <div class="cart-product-title">Premium Yoga Mat</div>
+                                        <div class="cart-product-category">Fitness</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Price" class="cart-price">₹1,299</td>
+                            <td data-label="Quantity">
+                                <div class="cart-quantity">
+                                    <button class="decrease">-</button>
+                                    <input type="number" value="1" min="1">
+                                    <button class="increase">+</button>
+                                </div>
+                            </td>
+                            <td data-label="Subtotal" class="cart-subtotal">₹1,299</td>
+                            <td><span class="cart-product-remove"><i class="fas fa-times"></i></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="cart-actions">
+                    <a href="index.html#products" class="btn btn-outline">Continue Shopping</a>
+                    <button class="btn">Update Cart</button>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <h3>Cart Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>₹7,797</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>₹100</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax</span>
+                    <span>₹780</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span class="amount">₹8,677</span>
+                </div>
+
+                <div class="coupon-form">
+                    <input type="text" placeholder="Coupon Code">
+                    <button class="btn">Apply Coupon</button>
+                </div>
+
+                <div class="checkout-btn">
+                    <a href="checkout.html" class="btn">Proceed to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Hanuman Sports</h3>
+                <p>Mysore's premier destination for quality sports equipment, apparel, and accessories since 1995.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#products">Products</a></li>
+                    <li><a href="index.html#categories">Categories</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Service</h3>
+                <ul class="footer-links">
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul class="footer-contact-info">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Sports Street, Nazarbad, Mysore - 570010</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <span>+91 9876543210</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>info@hanumansports.com</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Sat: 9:00 AM - 8:00 PM<br>Sun: 10:00 AM - 6:00 PM</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Hanuman Sports. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Quantity Controls
+        const quantityControls = document.querySelectorAll('.cart-quantity');
+        
+        quantityControls.forEach(control => {
+            const decreaseBtn = control.querySelector('.decrease');
+            const increaseBtn = control.querySelector('.increase');
+            const quantityInput = control.querySelector('input');
+            
+            decreaseBtn.addEventListener('click', () => {
+                let value = parseInt(quantityInput.value);
+                if (value > 1) {
+                    quantityInput.value = value - 1;
+                    updateSubtotal(control.closest('tr'));
+                }
+            });
+            
+            increaseBtn.addEventListener('click', () => {
+                let value = parseInt(quantityInput.value);
+                quantityInput.value = value + 1;
+                updateSubtotal(control.closest('tr'));
+            });
+            
+            quantityInput.addEventListener('change', () => {
+                let value = parseInt(quantityInput.value);
+                if (isNaN(value) {
+                    quantityInput.value = 1;
+                } else if (value < 1) {
+                    quantityInput.value = 1;
+                }
+                updateSubtotal(control.closest('tr'));
+            });
+        });
+
+        // Remove Product
+        const removeButtons = document.querySelectorAll('.cart-product-remove');
+        
+        removeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const row = button.closest('tr');
+                row.remove();
+                updateCartSummary();
+                
+                // Check if cart is empty
+                if (document.querySelectorAll('.cart-table tbody tr').length === 0) {
+                    showEmptyCart();
+                }
+            });
+        });
+
+        // Update Subtotal
+        function updateSubtotal(row) {
+            const priceText = row.querySelector('.cart-price').textContent;
+            const price = parseFloat(priceText.replace('₹', '').replace(',', ''));
+            const quantity = parseInt(row.querySelector('.cart-quantity input').value);
+            const subtotal = price * quantity;
+            
+            row.querySelector('.cart-subtotal').textContent = '₹' + subtotal.toLocaleString('en-IN');
+            updateCartSummary();
+        }
+
+        // Update Cart Summary
+        function updateCartSummary() {
+            let subtotal = 0;
+            const rows = document.querySelectorAll('.cart-table tbody tr');
+            
+            rows.forEach(row => {
+                const subtotalText = row.querySelector('.cart-subtotal').textContent;
+                subtotal += parseFloat(subtotalText.replace('₹', '').replace(',', ''));
+            });
+            
+            const shipping = 100;
+            const tax = subtotal * 0.1; // 10% tax
+            const total = subtotal + shipping + tax;
+            
+            document.querySelector('.summary-row:nth-child(1) span:nth-child(2)').textContent = '₹' + subtotal.toLocaleString('en-IN');
+            document.querySelector('.summary-row:nth-child(3) span:nth-child(2)').textContent = '₹' + tax.toFixed(0).toLocaleString('en-IN');
+            document.querySelector('.summary-row.total .amount').textContent = '₹' + total.toFixed(0).toLocaleString('en-IN');
+        }
+
+        // Show Empty Cart
+        function showEmptyCart() {
+            const cartItems = document.querySelector('.cart-items');
+            cartItems.innerHTML = `
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>Your cart is empty</h3>
+                    <p>Looks like you haven't added anything to your cart yet. Start shopping to find amazing sports products!</p>
+                    <a href="index.html#products" class="btn">Shop Now</a>
+                </div>
+            `;
+            
+            // Hide cart summary
+            document.querySelector('.cart-summary').style.display = 'none';
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

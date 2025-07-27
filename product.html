@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanuman Sports - Categories</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reuse the same CSS from index.html */
+        :root {
+            --primary: #ff6b00;
+            --secondary: #333;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --badminton: #4CAF50;
+            --cricket: #FF9800;
+            --football: #2196F3;
+            --balls: #9C27B0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header Styles (same as index.html) */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .contact-info a {
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .main-header {
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .header-icons a {
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .header-icons a span {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Category Hero */
+        .category-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .category-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb .separator {
+            color: var(--primary);
+        }
+
+        /* Category Content */
+        .category-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+
+        .sort-filter {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .sort-filter select {
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        /* Products Grid (same as index.html but adjusted) */
+        .section {
+            padding: 2rem 1rem;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.3rem 0.6rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-actions {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .product-actions button {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--white);
+            color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-actions button:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .product-info {
+            padding: 1.2rem;
+        }
+
+        .product-category {
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .current-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .old-price {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-decoration: line-through;
+        }
+
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #e05d00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.6rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            gap: 0.5rem;
+        }
+
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .pagination a:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .pagination .active {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        /* Footer (same as index.html) */
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 4rem 1rem 2rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-col p {
+            margin-bottom: 1rem;
+            color: #adb5bd;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-contact-info {
+            list-style: none;
+        }
+
+        .footer-contact-info li {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.8rem;
+            color: #adb5bd;
+        }
+
+        .footer-contact-info i {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .top-bar-container {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .category-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+
+            .header-icons {
+                margin-top: 1rem;
+            }
+
+            .category-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="contact-info">
+                <a href="tel:+919876543210"><i class="fas fa-phone"></i> +91 9538452672</a>
+                <a href="mailto:info@hanumansports.com"><i class="fas fa-envelope"></i> info@hanumansports.com</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+        <div class="main-header">
+            <div class="header-container">
+                <div class="logo">
+                    <div class="logo-text">
+                        <h1>Hanuman Sports</h1>
+                        <p>Mysore's Premier Sports Destination</p>
+                    </div>
+                </div>
+
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="category.html?category=all">Products</a></li>
+                        <li><a href="category.html?category=cricket">Categories</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i><span>3</span></a>
+                </div>
+
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Hero -->
+    <section class="category-hero">
+        <h1 id="category-title">All Products</h1>
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="separator">/</span>
+            <a href="#" id="current-category">All Products</a>
+        </div>
+    </section>
+
+    <!-- Category Content -->
+    <div class="category-content">
+        <div class="category-header">
+            <h2 class="category-title" id="category-heading">All Products</h2>
+            <div class="sort-filter">
+                <select id="sort-by">
+                    <option value="default">Sort by</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name-asc">Name: A to Z</option>
+                    <option value="name-desc">Name: Z to A</option>
+                    <option value="rating">Rating</option>
+                </select>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="products" id="products-container">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Hanuman Sports</h3>
+                <p>Mysore's premier destination for quality sports equipment, apparel, and accessories since 1995.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="category.html?category=all">Products</a></li>
+                    <li><a href="category.html?category=cricket">Categories</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Service</h3>
+                <ul class="footer-links">
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul class="footer-contact-info">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Sports Street, Nazarbad, Mysore - 570010</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <span>+91 9876543210</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>info@hanumansports.com</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Sat: 9:00 AM - 8:00 PM<br>Sun: 10:00 AM - 6:00 PM</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Hanuman Sports. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Product Data for all categories
+        const products = {
+            all: [
+                {
+                    id: 1,
+                    name: "Premium Running Shoes",
+                    category: "footwear",
+                    price: 2499,
+                    oldPrice: 3299,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale"
+                },
+                {
+                    id: 2,
+                    name: "Professional Cricket Bat",
+                    category: "cricket",
+                    price: 3999,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 3,
+                    name: "Premium Yoga Mat",
+                    category: "fitness",
+                    price: 1299,
+                    oldPrice: 1599,
+                    rating: 5,
+                    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    badge: "New"
+                },
+                {
+                    id: 4,
+                    name: "Professional Basketball",
+                    category: "balls",
+                    price: 1799,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 5,
+                    name: "Badminton Racket",
+                    category: "badminton",
+                    price: 1599,
+                    oldPrice: 1999,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1626248801379-51a0748a5f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale"
+                },
+                {
+                    id: 6,
+                    name: "Football Jersey",
+                    category: "football",
+                    price: 999,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1521193089946-7aa29d1fe776?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 7,
+                    name: "Cricket Ball",
+                    category: "cricket",
+                    price: 499,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 8,
+                    name: "Tennis Racket",
+                    category: "tennis",
+                    price: 2299,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 9,
+                    name: "Gym Gloves",
+                    category: "fitness",
+                    price: 699,
+                    rating: 3.5,
+                    image: "https://images.unsplash.com/photo-1595079835353-27d0a6d3c0c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 10,
+                    name: "Volleyball",
+                    category: "balls",
+                    price: 899,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1552667466-07770ae110d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                }
+            ],
+            badminton: [
+                {
+                    id: 101,
+                    name: "Professional Badminton Racket",
+                    category: "badminton",
+                    price: 2499,
+                    oldPrice: 2999,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1626248801379-51a0748a5f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale"
+                },
+                {
+                    id: 102,
+                    name: "Beginner Badminton Racket",
+                    category: "badminton",
+                    price: 999,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1626248801379-51a0748a5f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 103,
+                    name: "Badminton Shuttlecocks (Pack of 6)",
+                    category: "badminton",
+                    price: 499,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1626248801379-51a0748a5f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 104,
+                    name: "Badminton Net with Stand",
+                    category: "badminton",
+                    price: 3499,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1626248801379-51a0748a5f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 105,
+                    name: "Badminton Grip Tape",
+                    category: "badminton",
+                    price: 199,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1626248801379-51a0748a5f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 106,
+                    name: "Badminton Shoes",
+                    category: "badminton",
+                    price: 1999,
+                    oldPrice: 2499,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1626248801379-51a0748a5f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    badge: "Sale"
+                },
+                {
+                    id: 107,
+                    name: "Badminton Racket Cover",
+                    category: "badminton",
+                    price: 299,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1626248801379-51a0748a5f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 108,
+                    name: "Badminton Training Kit",
+                    category: "badminton",
+                    price: 1499,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1626248801379-51a0748a5f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 109,
+                    name: "Badminton Wrist Band",
+                    category: "badminton",
+                    price: 149,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1626248801379-51a0748a5f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 110,
+                    name: "Badminton Court Shoes",
+                    category: "badminton",
+                    price: 2299,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1626248801379-51a0748a5f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                }
+            ],
+            cricket: [
+                {
+                    id: 201,
+                    name: "Professional Cricket Bat",
+                    category: "cricket",
+                    price: 3999,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 202,
+                    name: "Cricket Ball (Leather)",
+                    category: "cricket",
+                    price: 499,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 203,
+                    name: "Cricket Batting Gloves",
+                    category: "cricket",
+                    price: 1299,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 204,
+                    name: "Cricket Helmet",
+                    category: "cricket",
+                    price: 1799,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 205,
+                    name: "Cricket Leg Pads",
+                    category: "cricket",
+                    price: 1599,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 206,
+                    name: "Cricket Kit Bag",
+                    category: "cricket",
+                    price: 999,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 207,
+                    name: "Cricket Wicket Keeping Gloves",
+                    category: "cricket",
+                    price: 1499,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 208,
+                    name: "Cricket Bat Grip",
+                    category: "cricket",
+                    price: 199,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 209,
+                    name: "Cricket Stumps (Set of 3)",
+                    category: "cricket",
+                    price: 799,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 210,
+                    name: "Cricket Thigh Guard",
+                    category: "cricket",
+                    price: 899,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                }
+            ],
+            football: [
+                {
+                    id: 301,
+                    name: "Professional Football",
+                    category: "football",
+                    price: 1499,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 302,
+                    name: "Football Jersey",
+                    category: "football",
+                    price: 999,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1521193089946-7aa29d1fe776?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 303,
+                    name: "Football Shoes",
+                    category: "football",
+                    price: 2499,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 304,
+                    name: "Football Shin Guards",
+                    category: "football",
+                    price: 599,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 305,
+                    name: "Football Goalkeeper Gloves",
+                    category: "football",
+                    price: 1299,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 306,
+                    name: "Football Training Cones (Set of 10)",
+                    category: "football",
+                    price: 399,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 307,
+                    name: "Football Pump with Needle",
+                    category: "football",
+                    price: 199,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 308,
+                    name: "Football Socks",
+                    category: "football",
+                    price: 299,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 309,
+                    name: "Football Training Bibs (Set of 5)",
+                    category: "football",
+                    price: 499,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 310,
+                    name: "Football Goal Net",
+                    category: "football",
+                    price: 1799,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                }
+            ],
+            balls: [
+                {
+                    id: 401,
+                    name: "Professional Basketball",
+                    category: "balls",
+                    price: 1799,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 402,
+                    name: "Volleyball",
+                    category: "balls",
+                    price: 899,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1552667466-07770ae110d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 403,
+                    name: "Rubber Handball",
+                    category: "balls",
+                    price: 299,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 404,
+                    name: "Synthetic Leather Football",
+                    category: "balls",
+                    price: 799,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 405,
+                    name: "Tennis Ball (Pack of 3)",
+                    category: "balls",
+                    price: 199,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 406,
+                    name: "Beach Ball",
+                    category: "balls",
+                    price: 249,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 407,
+                    name: "Medicine Ball (5kg)",
+                    category: "balls",
+                    price: 1299,
+                    rating: 4.5,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 408,
+                    name: "Yoga Ball (65cm)",
+                    category: "balls",
+                    price: 899,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 409,
+                    name: "Golf Balls (Pack of 3)",
+                    category: "balls",
+                    price: 599,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: 410,
+                    name: "Foam Ball (For Kids)",
+                    category: "balls",
+                    price: 149,
+                    rating: 4,
+                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                }
+            ]
+        };
+
+        // Get URL parameters
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                category: params.get('category') || 'all',
+                sort: params.get('sort') || 'default'
+            };
+        }
+
+        // Render products based on category and sort
+        function renderProducts() {
+            const { category, sort } = getUrlParams();
+            const container = document.getElementById('products-container');
+            const categoryTitle = document.getElementById('category-title');
+            const categoryHeading = document.getElementById('category-heading');
+            const currentCategory = document.getElementById('current-category');
+            
+            // Set category title
+            const categoryNames = {
+                all: "All Products",
+                badminton: "Badminton",
+                cricket: "Cricket",
+                football: "Football",
+                balls: "Balls"
+            };
+            
+            categoryTitle.textContent = categoryNames[category];
+            categoryHeading.textContent = categoryNames[category];
+            currentCategory.textContent = categoryNames[category];
+            
+            // Get products for the category
+            let categoryProducts = products[category] || products.all;
+            
+            // Sort products
+            switch(sort) {
+                case 'price-low':
+                    categoryProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    categoryProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name-asc':
+                    categoryProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'name-desc':
+                    categoryProducts.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+                case 'rating':
+                    categoryProducts.sort((a, b) => b.rating - a.rating);
+                    break;
+                default:
+                    // Default sorting (no change)
+            }
+            
+            // Clear container
+            container.innerHTML = '';
+            
+            // Render products
+            categoryProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                        <div class="product-actions">
+                            <button><i class="fas fa-heart"></i></button>
+                            <button><i class="fas fa-search"></i></button>
+                            <button><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹${product.price.toLocaleString()}</span>
+                            ${product.oldPrice ? `<span class="old-price">₹${product.oldPrice.toLocaleString()}</span>` : ''}
+                        </div>
+                        <div class="product-rating">
+                            ${renderRatingStars(product.rating)}
+                        </div>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                `;
+                
+                container.appendChild(productCard);
+            });
+            
+            // Set selected sort option
+            document.getElementById('sort-by').value = sort;
+        }
+
+        // Render rating stars
+        function renderRatingStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 1; i <= 5; i++) {
+                if (i <= fullStars) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i === fullStars + 1 && hasHalfStar) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            
+            return stars;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+            });
+            
+            // Sort functionality
+            document.getElementById('sort-by').addEventListener('change', function() {
+                const { category } = getUrlParams();
+                const sortValue = this.value;
+                window.location.href = `category.html?category=${category}&sort=${sortValue}`;
+            });
+            
+            // Add to cart functionality
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart')) {
+                    const productCard = e.target.closest('.product-card');
+                    const productName = productCard.querySelector('.product-title').textContent;
+                    
+                    alert(`${productName} has been added to your cart!`);
+                    
+                    // Update cart count
+                    const cartCount = document.querySelector('.header-icons a:nth-child(3) span');
+                    let count = parseInt(cartCount.textContent);
+                    cartCount.textContent = count + 1;
+                }
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (mainNav.classList.contains('active')) {
+                            mainNav.classList.remove('active');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
