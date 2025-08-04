@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Hanuman Sports</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B00;
+            --primary-light: rgba(255, 107, 0, 0.1);
+            --secondary: #0A0E17;
+            --accent: #00F0FF;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --white: #FFFFFF;
+            --gray: #6C757D;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --neon-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+            --primary-shadow: 0 0 15px rgba(255, 107, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(rgba(10, 14, 23, 0.9), rgba(10, 14, 23, 0.9)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .login-container {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+            margin: 2rem;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo img {
+            height: 80px;
+            filter: drop-shadow(0 0 5px var(--primary));
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            color: var(--white);
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+        }
+
+        .form-group i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 0.5rem;
+        }
+
+        .forgot-password a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .forgot-password a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), #FF8C00);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #FF8C00, var(--primary));
+            box-shadow: 0 5px 20px rgba(255, 107, 0, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .register-link {
+            text-align: center;
+            color: var(--gray);
+        }
+
+        .register-link a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .register-link a:hover {
+            color: var(--primary);
+        }
+
+        .social-login {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .social-login p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .social-login p::before,
+        .social-login p::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: var(--glass-border);
+        }
+
+        .social-login p::before {
+            left: 0;
+        }
+
+        .social-login p::after {
+            right: 0;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-icons a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: 1px solid var(--glass-border);
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icons a:nth-child(1) {
+            background: #3b5998;
+        }
+
+        .social-icons a:nth-child(2) {
+            background: #db4437;
+        }
+
+        .social-icons a:nth-child(3) {
+            background: #1da1f2;
+        }
+
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .logo img {
+                height: 60px;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="https://pngfre.com/wp-content/uploads/hanuman-36-281x300.png" alt="Hanuman Sports Logo">
+            <h1>Hanuman Sports</h1>
+            <p>Mysore's Premier Sports Destination</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+                <i class="fas fa-envelope"></i>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <i class="fas fa-lock"></i>
+            </div>
+
+            <div class="remember-forgot">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+
+            <div class="register-link">
+                Don't have an account? <a href="register.html">Register here</a>
+            </div>
+        </form>
+
+        <div class="social-login">
+            <p>Or login with</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-google"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            
+            // In a real application, you would send this data to your server
+            console.log('Login attempt:', { email, password, remember });
+            
+            // Show a success message (in a real app, this would be after successful authentication)
+            alert('Login successful! Redirecting to your dashboard...');
+            
+            // Redirect to home page after login
+            // window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

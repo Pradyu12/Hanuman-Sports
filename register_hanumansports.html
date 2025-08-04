@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Hanuman Sports</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B00;
+            --primary-light: rgba(255, 107, 0, 0.1);
+            --secondary: #0A0E17;
+            --accent: #00F0FF;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --white: #FFFFFF;
+            --gray: #6C757D;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --neon-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+            --primary-shadow: 0 0 15px rgba(255, 107, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(rgba(10, 14, 23, 0.9), rgba(10, 14, 23, 0.9)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .register-container {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+            margin: 2rem;
+        }
+
+        .register-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo img {
+            height: 80px;
+            filter: drop-shadow(0 0 5px var(--primary));
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            color: var(--white);
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            flex: 1;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+        }
+
+        .form-group i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .terms input {
+            margin-right: 0.5rem;
+        }
+
+        .terms label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .terms a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .terms a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), #FF8C00);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #FF8C00, var(--primary));
+            box-shadow: 0 5px 20px rgba(255, 107, 0, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .login-link {
+            text-align: center;
+            color: var(--gray);
+        }
+
+        .login-link a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .login-link a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .register-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .logo img {
+                height: 60px;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="logo">
+            <img src="https://pngfre.com/wp-content/uploads/hanuman-36-281x300.png" alt="Hanuman Sports Logo">
+            <h1>Hanuman Sports</h1>
+            <p>Mysore's Premier Sports Destination</p>
+        </div>
+
+        <form id="registerForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+                <i class="fas fa-envelope"></i>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone">
+                <i class="fas fa-phone"></i>
+            </div>
+
+            <div class="terms">
+                <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                <label for="agreeTerms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+            </div>
+
+            <button type="submit" class="btn">Create Account</button>
+
+            <div class="login-link">
+                Already have an account? <a href="login.html">Login here</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Simple validation
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // In a real application, you would send this data to your server
+            console.log('Registration data:', { firstName, lastName, email, password, phone });
+            
+            // Show a success message (in a real app, this would be after successful registration)
+            alert('Registration successful! Redirecting to login page...');
+            
+            // Redirect to login page after registration
+            // window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
